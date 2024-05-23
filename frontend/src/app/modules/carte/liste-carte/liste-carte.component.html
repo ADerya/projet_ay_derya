@@ -1,0 +1,10 @@
+<p>liste-carte works!</p>
+
+<div *ngFor="let carte of cartes">
+    <div>Nom de la carte: {{ carte.nomCarte }}</div>
+      <div>Code de la carte: {{ carte.codeCarte }}</div>
+      <div>CCV: {{ carte.ccv }}</div>
+      <div>Expiration: {{ carte.mois }}/{{ carte.annee}} </div>
+    <button (click)="supprimerCarte(carte.id)">Supprimer</button>
+  </div>
+  

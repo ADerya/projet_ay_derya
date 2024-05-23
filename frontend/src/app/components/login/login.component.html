@@ -1,0 +1,47 @@
+<div class="flex justify-center">
+    <div class="mt-6 mx-4 max-w-2xl p-6 bg-white shadow-md rounded-lg">
+      <h2 class="text-xl font-semibold mb-4">Formulaire de connexion</h2>
+  
+      
+  
+        <!-- Email -->
+        <div class="mb-6">
+          <label for="login" class="block text-sm font-medium text-gray-700">Adresse Email</label>
+          <input type="login" id="login" name="login" [(ngModel)]="login"
+                 class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+                 placeholder="Ex: odede@example.com" required/>
+            <!-- <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+            class="error-message"
+            style="color: red;">
+            L'email est invalide.
+            </div> -->
+        </div>
+  
+        <!-- Mot de passe -->
+        <div class="mb-6">
+          <label for="password" class="block text-sm font-medium text-gray-700">Mot de Passe</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password"
+                 class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+                 placeholder="Entrez votre mot de passe" required/>
+
+            <!-- <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+            class="error-message"
+            style="color: red;">
+            Le mot de passe est invalide.
+            </div> -->
+        </div>
+  
+        <!-- Bouton Se connecter -->
+        <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700 disabled:cursor-default disabled:bg-gray-200 disabled:text-gray-400"
+        (click)= "onSubmit()">Se connecter
+        </button>
+     
+      <div *ngIf="cnx && !error" class="container pt-1">
+        <p class="alert alert-success">Bonjour {{ nom }} - {{ prenom }}
+      </div>
+      <div *ngIf="error && !cnx" class="container pt-1">
+        <p class="alert alert-danger">{{error}}</p>
+      </div>
+    </div>
+  </div>
+  

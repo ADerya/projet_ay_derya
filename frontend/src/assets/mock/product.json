@@ -1,0 +1,66 @@
+[
+    {
+      "id": 1,
+      "name": "Coco Channel",
+      "price": 100.00,
+      "description": "Une lavande florale, sensuelle et audacieuse",
+      "stock": 10,
+      "image": "assets/img/parfum1.jpg",
+      "category": "Parfum"
+    },
+    {
+      "id": 2,
+      "name": "Rouge à lèvres",
+      "price": 26.99,
+      "description": "Le rouge à lèvres liquide ultra mat",
+      "stock": 10,
+      "image": "assets/img/rouge-a-levres.jpg",
+      "category": "Maquillage"
+    },
+    {
+      "id": 3,
+      "name": "Fard à paupières",
+      "price": 30.99,
+      "description": "Palette maquillage visage enlumineur & blush",
+      "stock": 10,
+      "image": "assets/img/palette.webp",
+      "category": "Maquillage"
+    },
+    {
+      "id": 4,
+      "name": "Crème hydratante",
+      "price": 25.00,
+      "description": "Une crème hydratante visage longue durée",
+      "stock": 15,
+      "image": "assets/img/creme.png",
+      "category": "Soin"
+    },
+    {
+      "id": 5,
+      "name": "Mascara",
+      "price": 58.50,
+      "description": "Le mascara qui démultiplie vos cils et amplifie leur volume",
+      "stock": 20,
+      "image": "assets/img/mascara.png",
+      "category": "Maquillage"
+    },
+    {
+      "id": 6,
+      "name": "Eau de toilette",
+      "price": 800.99,
+      "description": "Le parfum floral et fruité avec des ingrédients classiques",
+      "stock": 12,
+      "image": "assets/img/parfum2.webp",
+      "category": "Parfum"
+    },
+    {
+        "id": 7,
+        "name": "Multi-Active Jour",
+        "price": 79.00,
+        "description": "Crème lissante, booster d'éclat, peaux sèches",
+        "stock": 10,
+        "image": "assets/img/creme2.jpg",
+        "category": "Soin"
+    }
+  ]
+  

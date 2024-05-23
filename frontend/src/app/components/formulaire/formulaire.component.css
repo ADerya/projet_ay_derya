@@ -1,0 +1,29 @@
+.formulaire {
+    align-items: center;
+display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  width: 70%;
+  box-sizing: border-box;
+}
+
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #ff6699;
+}
+
+.formulaire .form-group input,
+.formulaire .form-group select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10%;
+  box-sizing: border-box;
+  border: 2px solid #ff99cc;
+  border-radius: 8px;
+  background-color: #fff5f8;
+  color: #333;
+}
+

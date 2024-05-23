@@ -1,0 +1,257 @@
+<div class="flex justify-center">
+  <div class="mt-6 mx-4 max-w-lg p-6 bg-white shadow-md rounded-lg">
+    <h2 class="text-xl font-semibold mb-4">Formulaire d'inscription</h2>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <!-- Civilité -->
+      <div class="mb-6">
+        <label for="civilite" class="block text-sm font-medium text-gray-700">
+          Civilité
+        </label>
+        <select
+          formControlName="civilite"
+          id="civilite"
+          name="civilite"
+          class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+          [ngClass]="{'border-red-500': hasErrors('civilite')}"
+          required
+        >
+          <option value="male">Monsieur</option>
+          <option value="female">Madame</option>
+        </select>
+      </div>
+
+      <!-- Nom et Prénom -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label for="nom" class="block text-sm font-medium text-gray-700">
+            Nom
+          </label>
+          <input
+            formControlName="nom"
+            type="text"
+            id="nom"
+            name="nom"
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md uppercase placeholder:normal-case"
+            placeholder="Ex: Odede"
+            [ngClass]="{'border-red-500': hasErrors('nom')}"
+            required
+          />
+          <app-error-message [control]="registrationForm.controls.nom" />
+        </div>
+        <div>
+          <label for="prenom" class="block text-sm font-medium text-gray-700"
+            >Prénom</label
+          >
+          <input
+            formControlName="prenom"
+            type="text"
+            id="prenom"
+            name="prenom"
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md capitalize placeholder:normal-case"
+            placeholder="Ex: Derya"
+            [ngClass]="{'border-red-500': hasErrors('prenom')}"
+            required
+          />
+          <app-error-message [control]="registrationForm.controls.prenom" />
+        </div>
+      </div>
+
+      <!-- Adresse -->
+      <div class="mb-6">
+        <label for="adresse" class="block text-sm font-medium text-gray-700"
+          >Adresse</label
+        >
+        <input
+          formControlName="adresse"
+          type="text"
+          id="adresse"
+          name="adresse"
+          class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+          placeholder="Ex: 123 Rue du CFAI"
+          [ngClass]="{'border-red-500': hasErrors('adresse')}"
+          required
+        />
+        <app-error-message [control]="registrationForm.controls.adresse" />
+      </div>
+
+      <!-- Code Postal et Ville -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label
+            for="code_postal"
+            class="block text-sm font-medium text-gray-700"
+            >Code Postal</label
+          >
+          <input
+            formControlName="codePostal"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            id="code_postal"
+            name="code_postal"
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+            placeholder="Ex: 67000"
+            [ngClass]="{'border-red-500': hasErrors('codePostal')}"
+            required
+          />
+          <app-error-message [control]="registrationForm.controls.codePostal" />
+        </div>
+        <div>
+          <label for="ville" class="block text-sm font-medium text-gray-700"
+            >Ville</label
+          >
+          <input
+            formControlName="ville"
+            type="text"
+            id="ville"
+            name="ville"
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md capitalize placeholder:normal-case"
+            placeholder="Ex: Paris"
+            [ngClass]="{'border-red-500': hasErrors('ville')}"
+            required
+          />
+          <app-error-message [control]="registrationForm.controls.ville" />
+        </div>
+      </div>
+
+      <!-- Pays -->
+      <div class="mb-6">
+        <label for="pays" class="block text-sm font-medium text-gray-700"
+          >Pays</label
+        >
+        <input
+          formControlName="pays"
+          type="text"
+          id="pays"
+          name="pays"
+          class="mt-1 p-2 block w-full border border-gray-300 rounded-md uppercase placeholder:normal-case"
+          placeholder="Ex: FRANCE"
+          [ngClass]="{'border-red-500': hasErrors('pays')}"
+          required
+        />
+        <app-error-message [control]="registrationForm.controls.pays" />
+      </div>
+
+      <!-- Adresse Email et Téléphone -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700"
+            >Adresse Email</label
+          >
+          <input
+            formControlName="email"
+            type="email"
+            id="email"
+            name="email"
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+            placeholder="Ex: odede@example.com"
+            [ngClass]="{'border-red-500': hasErrors('email')}"
+            required
+          />
+          <app-error-message [control]="registrationForm.controls.email" />
+        </div>
+        <div>
+          <label for="telephone" class="block text-sm font-medium text-gray-700"
+            >Téléphone</label
+          >
+          <input
+            formControlName="tel"
+            type="tel"
+            id="phone"
+            name="phone"
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+            [ngClass]="{'border-red-500': hasErrors('tel')}"
+            required
+          />
+          <app-error-message [control]="registrationForm.controls.tel" />
+        </div>
+      </div>
+
+      <!-- Login -->
+      <div class="mb-6">
+        <label for="login" class="block text-sm font-medium text-gray-700"
+          >Login</label
+        >
+        <input
+          formControlName="login"
+          type="text"
+          id="login"
+          name="login"
+          class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+          placeholder="Ex: dede"
+          [ngClass]="{'border-red-500': hasErrors('login')}"
+          required
+        />
+        <app-error-message [control]="registrationForm.controls.login" />
+      </div>
+
+      <!-- Mot de Passe et Confirmation Mot de Passe -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label
+            for="mot_de_passe"
+            class="block text-sm font-medium text-gray-700"
+            >Mot de Passe</label
+          >
+          <input
+            formControlName="password"
+            type="password"
+            id="mdp"
+            name="mdp"
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+            placeholder="Entrez votre mot de passe"
+            [ngClass]="{'border-red-500': hasErrors('password')}"
+            required
+          />
+          <app-error-message [control]="registrationForm.controls.password" />
+        </div>
+        <div>
+          <label
+            for="confirmation_mot_de_passe"
+            class="block text-sm font-medium text-gray-700"
+            >Confirmation Mot de Passe</label
+          >
+          <input
+            formControlName="confirmation"
+            type="password"
+            class="form-control"
+            id="mdp2"
+            name="mdp2"
+            oncopy="return false"
+            onpaste="return false"
+            oncut="return false"
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+            placeholder="Confirmez votre mot de passe"
+            [ngClass]="{'border-red-500': hasErrors('confirmation')}"
+            required
+          />
+          <app-error-message [control]="registrationForm.controls.confirmation" />
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <span class="error-message text-red-500 text-sm mt-2 block">
+          <!-- {{errorMdp}} -->
+        </span>
+        <span class="error-message text-black text-sm mt-2 block">
+          Le mot de passe doit contenir au moins 8 caractères, incluant au moins une minuscule, une majuscule, un chiffre et un caractère spécial.
+        </span>
+      </div>
+
+      <!-- Bouton S'inscrire -->
+      <button
+        class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700 disabled:cursor-default disabled:bg-gray-200 disabled:text-gray-400"
+        [disabled]="registrationForm.invalid"
+      >
+        S'inscrire
+      </button>
+    </form>
+  </div>
+
+  @if (client !== undefined) {
+    <div class="mt-6 mx-4 max-w-lg p-6 bg-white shadow-md rounded-lg">
+      <app-recapitulatif [client]="client"></app-recapitulatif>
+    </div>
+  }
+</div>

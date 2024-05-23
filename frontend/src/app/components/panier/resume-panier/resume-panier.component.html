@@ -1,0 +1,25 @@
+<div class="mt-6 mx-auto max-w-7xl px-6">
+    <div class="container">
+      <div class="grid grid-cols-1 sm:grid-cols-2 my-3 gap-8">
+        <div class="flex flex-col">
+          <div class="bg-white text-black font-bold font-fira mb-6">
+            <h1 class="text-2xl font-bold px- py-4 border-b border-gray-300">Mon panier</h1>
+            <p class="text-xs text-gray-400 px-6 py-2">{{ nombreProduitDansPanier$ | async }} produits ajoutés</p>
+          </div>
+          <div class="bg-white shadow-md" *ngFor="let produit of produits$ | async">
+            <app-produit-panier [produit]="produit"></app-produit-panier>
+          </div>
+        </div>
+        <div>
+          <div class="bg-white p-4 shadow-md text-black justify-between w-1/2">
+            <h1 class="text-2xl font-bold mb-4">Récapitulatif :</h1>
+            <p >Total : {{ prixTotal$ | async }} €</p>
+          </div>
+          <div class="bg-white p-4 shadow-md text-black flex justify-end">
+            <button class="bg-pink-500 text-white px-4 py-2 rounded-lg">Valider mon panier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

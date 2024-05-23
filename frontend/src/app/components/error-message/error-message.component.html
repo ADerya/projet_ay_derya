@@ -1,0 +1,41 @@
+@if (control.errors && control.dirty) {
+    <span class="text-sm text-red-500">
+      @if (control.hasError("required")) {
+        Ce champ est obligatoire
+      } @else if (control.hasError("minLength")) {
+        Ce champ doit comporter au moins
+        {{ control.getError("minLength").requiredLength }} caractères
+      } @else if (control.hasError("maxLength")) {
+        Ce champ ne doit pas dépasser
+        {{ control.getError("maxLength").requiredLength }} caractères
+      } @else if (control.hasError("pattern")) {
+        Ce champ doit correspondre au motif suivant
+        {{ control.getError("pattern").requiredPattern }}
+      } @else if (control.getError("min")) {
+        Ce champ doit être au moins de  {{ control.getError("min").min }} caractères
+      } @else if (control.getError("max")) {
+        Ce champ doit être au plus de {{ control.getError("max").max }} caractères
+      } @else if (control.getError("email")) {
+        Veuillez saisir une adresse e-mail valide
+      } @else if (control.getError("mustMatch")) {
+        Les mots de passe ne correspondent pas
+      } @else if (control.getError("pattern")) {
+        Ce champ ne correspond pas au format requis
+      } @else if (control.getError("tel")) {
+          Veuillez saisir un numéro de téléphone valide
+      } @else if (control.getError("adresse")) {
+          Veuillez saisir une adresse valide
+      } @else if (control.getError("codePostal")) {
+          Veuillez saisir un code postal valide
+      } @else if (control.getError("password")) {
+          Le mot de passe doit contenir au moins 8 caractères, incluant des lettres minuscules et majuscules, des chiffres et des caractères spéciaux.
+      } @else if (control.getError("confirmation")) {
+          La confirmation du mot de passe est requise
+      } @else if (control.getError("invalidPassword")) {
+        Le mot de passe doit contenir au moins 8 caractères, incluant des lettres minuscules et majuscules, des chiffres et des caractères spéciaux.
+      }
+      @else {
+          Une erreur s'est produite
+      }
+    </span>
+  }
