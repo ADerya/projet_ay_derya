@@ -35,14 +35,14 @@ export class ApiService {
       return this.http.post<Client>(environment.backendLoginClient, data, httpOptions);
     }
 
-    public signupClient(client: Client): Observable<Client> {
+    public signupClient(client: Client): Observable<any> {
       let httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json'
         })
       };
 
-      return this.http.post<Client>(environment.backendSignupClient, client, httpOptions);
+      return this.http.post(environment.backendSignupClient, client, httpOptions);
     }
   
     public getProduits(): Observable<Product[]> {

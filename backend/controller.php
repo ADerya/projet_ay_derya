@@ -121,9 +121,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
     }
 
 	// APi d'authentification générant un JWT
-	function postSignup (Request $request, Response $response, $args) {
+	function postSignup (Request $request, Response $response) {
 	    global $entityManager;
-		$erreur= [];
+		$erreur=[];
 	    $err=false;
 		// Récupération du body de la requête
 		$bodyRequest = $request->getBody();
@@ -203,8 +203,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 				$user->setPass($pass);
 				$entityManager->persist($user);
 				$entityManager->flush();
-				$response = addHeaders ($response);
-				$response = createJwT ($response);
+				$response = addHeaders($response);
+				$response = createJwT($response);
 				$data = array('nom' => $user->getNom(), 'prenom' => $user->getPrenom(), 'id' => $user->getId());
 				$response->getBody()->write(json_encode($data));
 			}

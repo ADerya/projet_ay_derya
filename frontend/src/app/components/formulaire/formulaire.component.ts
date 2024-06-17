@@ -64,7 +64,6 @@ export class FormulaireComponent implements OnInit {
   }
 
   protected onSubmit() {
-    console.log(this.registrationForm.value, this.registrationForm.valid);
     if (!this.registrationForm.valid) return;
 
     this.client = this.registrationForm.value as Client;
