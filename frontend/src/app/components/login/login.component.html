@@ -37,7 +37,7 @@
         </button>
      
       <div *ngIf="cnx && !error" class="container pt-1">
-        <p class="alert alert-success">Bonjour {{ nom }} - {{ prenom }}
+        <p class="alert alert-success"><span>Bonjour {{ nomComplet$ | async }}</span></p>
       </div>
       <div *ngIf="error && !cnx" class="container pt-1">
         <p class="alert alert-danger">{{error}}</p>

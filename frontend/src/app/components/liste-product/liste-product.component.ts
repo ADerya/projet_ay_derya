@@ -26,7 +26,6 @@ export class ListeProductComponent implements OnInit {
   }
   ngOnInit(): void {
     this.products$ = this.searchEvent.pipe(
-      startWith(''),
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((searchTerm: string) =>

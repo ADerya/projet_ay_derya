@@ -247,11 +247,17 @@
         S'inscrire
       </button>
     </form>
+    <div *ngIf="success" class="container pt-1">
+      <p class="alert alert-success"><span>{{ success }}</span></p>
+    </div>
+    <div *ngIf="error" class="container pt-1">
+      <p class="alert alert-danger">{{error}}</p>
+    </div>
   </div>
 
-  @if (client !== undefined) {
+  <!-- @if (client !== undefined) {
     <div class="mt-6 mx-4 max-w-lg p-6 bg-white shadow-md rounded-lg">
       <app-recapitulatif [client]="client"></app-recapitulatif>
     </div>
-  }
+  } -->
 </div>

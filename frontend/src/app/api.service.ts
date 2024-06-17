@@ -23,8 +23,7 @@ export class ApiService {
         })
       );
     }
-
-  
+    
     public loginClient(email: string, password: string): Observable<Client> {
       let data: String;
       let httpOptions = {
@@ -34,6 +33,16 @@ export class ApiService {
       };
       data = 'login=' + email + '&password=' + password;
       return this.http.post<Client>(environment.backendLoginClient, data, httpOptions);
+    }
+
+    public signupClient(client: Client): Observable<Client> {
+      let httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/x-www-form-urlencoded'
+        })
+      };
+
+      return this.http.post<Client>(environment.backendSignupClient, client, httpOptions);
     }
   
     public getProduits(): Observable<Product[]> {

@@ -5,6 +5,9 @@ import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from '../../shared/types/product';
+import { AjouterClient } from '../../shared/actions/client-action';
+import { Select, Store } from '@ngxs/store';
+import { ClientState } from '../../shared/states/client-state';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,7 @@ import { Product } from '../../shared/types/product';
 })
 export class LoginComponent implements OnInit {
   
-
+  @Select(ClientState.getNomComplet) nomComplet$!: Observable<string>;
   produit$!: Observable<Product[]>;
   name: string= '';
   login: string = '';
@@ -26,22 +29,23 @@ export class LoginComponent implements OnInit {
   prenom?: string = '';
   cnx: boolean = false;
   error: string = '';
-  public constructor(private apiService: ApiService, private router:Router) {
+  public constructor(private apiService: ApiService, private router:Router, private store: Store) {
     this.produit$ = this.apiService.getProduits();
   }
 
   onSubmit(): void {
 
     console.log('Email: ', this.login);
-    console.log('Name: ', this.name);
     this.apiService.loginClient(this.login, this.password).subscribe(
       (response) => {
-        this.nom = response.nom;
-        this.prenom = response.prenom;
+        this.store.dispatch(new AjouterClient(response));
         this.cnx = true;
         
         console.log('Login response: ', response);
-        this.router.navigateByUrl('/catalogue');
+        // attendre 1 seconde
+        setTimeout(() => {
+          this.router.navigateByUrl('/catalogue');
+        }, 1000);
     },
     (error) => {
       this.error = "Erreur de connexion ! Veuillez vérifier vos identifiants. Essayez login: derya et mdp: derya !"
