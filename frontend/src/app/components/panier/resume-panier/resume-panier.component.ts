@@ -18,4 +18,11 @@ export class ResumePanierComponent {
   @Select(PanierState.getProduitPanier) produits$!: Observable<BaseProduct[]>;
   @Select(PanierState.prixTotalPanier) prixTotal$!: Observable<number>;
   @Select(PanierState.nombreProduitDansPanier) nombreProduitDansPanier$!: Observable<number>;
+
+  constructor() { }
+
+  validerPanier() {
+    console.log('Panier validé');
+    alert('Panier validé. Merci pour votre achat !');
+  }
 }

@@ -16,36 +16,56 @@ import { CommonModule } from '@angular/common';
 })
 export class ListeProductComponent implements OnInit {
 
+  message = '';
+  erreur = '';
   products$!: Observable<Product[]>;
   categories$!: Observable<string[]>;
   @ViewChild('rechercheInput', { static: true }) rechercheInput!: ElementRef;
-  @Output() searchEvent = new BehaviorSubject<string>('');
+  @ViewChild('categorieInput', { static: true }) categorieInput!: ElementRef;
+  @Output() searchEvent = new BehaviorSubject<{search: string, category: string}>({search: '', category: ''});
 
   constructor(private apiService: ApiService, private store: Store) {
-    this.products$ = this.apiService.getProduits();
-  }
-  ngOnInit(): void {
+    this.categories$ = this.apiService.getCategories();
+    console.log(this.searchEvent);
+
     this.products$ = this.searchEvent.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap((searchTerm: string) =>
-        searchTerm.trim() === ''
-          ? this.apiService.getProduits()
-          : this.apiService.getSearchProduits(searchTerm).pipe(
-            catchError(() => of([] as Product[])),
-            startWith([] as Product[])
-          )
-      )
+      switchMap(({search, category}) => {
+        return this.getProducts(search, category);
+      })
     );
+  }
+  ngOnInit(): void {
+    this.getProducts('', '');
+    //this.getAllProducts();
+  }
 
-    this.searchEvent.next('');
+  getAllProducts(): void {
+    this.products$ = this.apiService.getAllProducts();
   }
 
   onSearchInputChange(searchTerm: string): void {
-    this.searchEvent.next(searchTerm);
+    let categorie = this.categorieInput.nativeElement.value;
+    this.searchEvent.next({ search: searchTerm, category: categorie });
+  }
+
+  onCategoryInputChange(categorie: string): void {
+    let searchTerm = this.rechercheInput.nativeElement.value;
+    this.searchEvent.next({ search: searchTerm, category: categorie });
+  }
+
+  getProducts(search: string, category: string): Observable<Product[]> {
+    return this.apiService.getSearchProducts(search, category).pipe(
+      catchError(() => of([]))
+    );
   }
 
   ajouterAuPanier(produit: Product) {
     this.store.dispatch(new AjouterProduit(produit));
+    this.message = produit.name + ' ajouté(e) au panier !';
+    setTimeout(() => {
+      this.message = '';
+    }, 2000);
   }
 }

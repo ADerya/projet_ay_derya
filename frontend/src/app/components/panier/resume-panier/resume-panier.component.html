@@ -16,7 +16,7 @@
             <p >Total : {{ prixTotal$ | async }} €</p>
           </div>
           <div class="bg-white p-4 shadow-md text-black flex justify-end">
-            <button class="bg-pink-500 text-white px-4 py-2 rounded-lg">Valider mon panier</button>
+            <button (click)="validerPanier()" class="bg-pink-500 text-white px-4 py-2 rounded-lg">Valider mon panier</button>
           </div>
         </div>
       </div>

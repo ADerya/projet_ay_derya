@@ -75,12 +75,14 @@ export class FormulaireComponent implements OnInit {
         this.success = "Inscription réussie !";
         this.router.navigateByUrl('/catalogue');
         this.registrationForm.reset();
-        this.snackBar.showSnackbar("Vous vous êtes inscrit avec succès", 'success');
       },
       (error) => {
         console.log('Signup error: ', error);
-        this.snackBar.showSnackbar("erreur", 'error');
-        this.error = "Erreur d'inscription ! Veuillez vérifier vos informations.";
+        if (error.error && error.error[0] === "Login déjà utilisé") {
+          this.error = "Erreur d'inscription ! Login déjà utilisé, veuillez en choisir un autre.";
+        } else {
+          this.error = "Erreur d'inscription ! Veuillez vérifier vos informations.";
+        }
       }
     );
   }

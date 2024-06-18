@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Product } from './shared/types/product';
 import { environment } from '../environments/environment';
@@ -49,7 +49,16 @@ export class ApiService {
       return this.http.get<Product[]>(environment.backendCatalogue);
     }
   
-    public getSearchProduits(search: string): Observable<Product[]> {
-      return this.http.get<Product[]>(environment.backendCatalogue + '/' + search);
+    public getSearchProducts(search: string, category: string): Observable<Product[]> {
+      const params = new HttpParams()
+      .set('search', search)
+      .set('category', category);
+
+      const url = environment.backendCatalogueFilter;
+      return this.http.get<Product[]>(url, { params: params });
+    }
+
+    getAllProducts(): Observable<Product[]> {
+      return this.http.get<Product[]>(environment.backendCatalogue);
     }
   }

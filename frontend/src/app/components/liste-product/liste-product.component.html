@@ -12,6 +12,15 @@
                 formControlName="nom"
                 (input)="onSearchInputChange(rechercheInput.value)"
             />
+            <select #categorieInput
+                (input)="onCategoryInputChange(categorieInput.value)"
+                class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+                formControlName="categorie"
+              >
+              <option value="">Toutes les catégories</option>
+              <option *ngFor="let category of categories$ | async" [value]="category">{{ category }}</option>
+            </select>
+            
           
           </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -32,5 +41,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div *ngIf="message" class="fixed top-6 w-full text-center mx-auto ">
+    <p role="alert" class="alert alert-success z-100 w-[25rem] text-center mx-auto"><span>{{ message }}</span></p>
+  </div>
+  <div *ngIf="erreur" class="fixed top-6 w-full text-center mx-auto ">
+    <p role="alert" class="alert alert-error z-100 w-[25rem] text-center mx-auto"><span>{{ erreur }}</span></p>
   </div>
   

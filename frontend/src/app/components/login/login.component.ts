@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
   @Select(ClientState.getNomComplet) nomComplet$!: Observable<string>;
   produit$!: Observable<Product[]>;
   name: string= '';
-  login: string = '';
-  password: string = '';
+  login: string = 'dede';
+  password: string = 'Azerty123';
 
   nom?: string = '';
   prenom?: string = '';
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         // attendre 1 seconde
         setTimeout(() => {
           this.router.navigateByUrl('/catalogue');
-        }, 1000);
+        }, 2000);
     },
     (error) => {
       this.error = "Erreur de connexion ! Veuillez vérifier vos identifiants. Essayez login: derya et mdp: derya !"
