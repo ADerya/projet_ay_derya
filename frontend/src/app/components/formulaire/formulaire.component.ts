@@ -11,6 +11,7 @@ import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { AjouterClient } from '../../shared/actions/client-action';
+import { SnackbarService } from '../../snackbar.service';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class FormulaireComponent implements OnInit {
   error: string = '';
   success: string = '';
 
-  public constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private store: Store ) {}
+  public constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private store: Store, private snackBar: SnackbarService ) {}
 
   ngOnInit(): void {
     this.title = "Formulaire de contact";
@@ -74,9 +75,11 @@ export class FormulaireComponent implements OnInit {
         this.success = "Inscription réussie !";
         this.router.navigateByUrl('/catalogue');
         this.registrationForm.reset();
+        this.snackBar.showSnackbar("Vous vous êtes inscrit avec succès", 'success');
       },
       (error) => {
         console.log('Signup error: ', error);
+        this.snackBar.showSnackbar("erreur", 'error');
         this.error = "Erreur d'inscription ! Veuillez vérifier vos informations.";
       }
     );

@@ -104,8 +104,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 	    }
 	    if (!$err) {
 		$userRepository = $entityManager->getRepository('Utilisateurs');
-		$user = $userRepository->findOneBy(array('login' => $login, 'pass' => $pass));
-		if ($user and $login == $user->getLogin() and $pass == $user->getPass()) {
+		$user = $userRepository->findOneBy(array('login' => $login, 'password' => $pass));
+		if ($user and $login == $user->getLogin() and $pass == $user->getPassword()) {
 		    $response = addHeaders ($response);
 		    $response = createJwT ($response);
 		    $data = array('nom' => $user->getNom(), 'prenom' => $user->getPrenom());
@@ -185,9 +185,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 				array_push($erreur, "Login déjà utilisé");
 				$response = $response->withStatus(409); //Set response status to 409 (Conflict)
 				$response->getBody()->write(json_encode($erreur));
+				array_push($erreur, "Login déjà utilisé. Veuillez en choisir un autre.");
 			}
 			else {
-				$hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
 				// Création d'un nouvel utilisateur
 				$user = new Utilisateurs();
 				$user->setNom($nom);
@@ -200,7 +200,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 				$user->setCodePostal($cp);
 				$user->setPays($pays);
 				$user->setLogin($login);
-				$user->setPass($pass);
+				$user->setPassword($pass);
 				$entityManager->persist($user);
 				$entityManager->flush();
 				$response = addHeaders($response);

@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-
     console.log('Email: ', this.login);
     this.apiService.loginClient(this.login, this.password).subscribe(
       (response) => {

@@ -11,7 +11,8 @@
 	'user' =>'derya',
 	'password' => 'AZZvW8Vh8GdcIVpr1f1Hin8noF3Lc2Cp',
 	'dbname' => 'dbprojet_w3mz',
-	'port' => '5432'
+	'port' => '5432',
+    'ssl' => true
 	);
 
 
